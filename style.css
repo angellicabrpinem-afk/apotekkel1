@@ -1,0 +1,180 @@
+/* --- MASTER CSS: ELEGANT PASTEL DREAM THEME --- */
+
+/* 1. Pengaturan Dasar Body (Background Terang Lembut) */
+body {
+    background-color: #defcf9 !important; /* Menggunakan .first-color (toska pastel sangat muda) */
+    color: #2b2b2b !important;            /* Teks abu-abu gelap agar nyaman dibaca di atas warna pastel */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* 2. Sidebar Pastel Elegan */
+.sidebar {
+    position: fixed;
+    width: 260px;
+    height: 100vh;
+    background-color: #cca8e9 !important; /* Menggunakan .fourth-color (ungu pastel sebagai aksen utama) */
+    padding-top: 20px;
+    color: #2b2b2b !important;            /* Teks gelap agar kontras dengan background pastel */
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: flex !important;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333333 !important;            /* Link menu menggunakan warna gelap yang senada */
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #c3bef0 !important; /* Efek hover menggunakan .third-color (ungu kebiruan pastel) */
+    color: #000000 !important;            /* Teks menjadi lebih tegas saat aktif */
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.sidebar-logo {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2b2b2b !important;            /* Logo disesuaikan dengan warna teks gelap */
+    margin-bottom: 20px;
+}
+
+/* 3. Kartu (Efek Kaca di atas Background Terang) */
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.75) !important; /* Putih semi transparan */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #2b2b2b;
+}
+
+.card-header-role {
+    text-align: center;
+    padding: 12px;
+    font-weight: 600;
+    color: #2b2b2b !important;
+    background-color: #cca8e9 !important; /* Header Kartu menggunakan .fourth-color agar serasi dengan Sidebar */
+    border-radius: 14px 14px 0 0;
+}
+
+/* 4. Pengaturan Konten Utama */
+.content {
+    margin-left: 260px;
+    padding: 2rem;
+}
+
+/* --- Penyesuaian Agar Kotak Konten Tidak Melebar --- */
+
+/* Batasi lebar container agar mirip seperti kotak di dashboard */
+.table-container {
+    max-width: 900px; /* Sesuaikan angka ini agar lebarnya pas seperti di dashboard */
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffffff !important;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+/* Jika ingin tabelnya juga tidak terlalu lebar, beri sedikit ruang */
+.table {
+    margin: 0 auto;
+}
+
+.table thead {
+    background-color: #c3bef0 !important; /* Header Tabel menggunakan .third-color */
+    color: #2b2b2b !important;
+}
+
+.table thead th {
+    padding: 12px
+}
+
+.table tbody tr {
+    background-color: transparent !important;
+    transition: 0.3s;
+    border-bottom: 1px solid #eee;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(202, 222, 252, 0.4) !important; /* Efek hover baris tabel menggunakan .second-color lembut */
+}
+
+/* Tambahan: Input Form Agar Terang */
+input, select, textarea {
+    background-color: #ffffff !important;
+    border: 1px solid #cadefc !important; /* Border input disesuaikan dengan .second-color */
+    color: #2b2b2b !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+  /* 1. Pengaturan Layout Dasar */
+  html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: #e0f7fa; /* Warna latar belakang dari screenshot */
+  }
+
+  /* 2. Sidebar (Menempel di kiri) */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #cca8e9; /* Warna sidebar Anda */
+    padding: 20px 10px;
+    z-index: 1000;
+  }
+
+  /* 3. Konten Utama (Memberi jarak agar tidak tertutup sidebar) */
+  .content {
+    margin-left: 200px; /* Menyesuaikan lebar sidebar */
+    padding: 20px 40px;
+  }
+
+  /* 4. Komponen Foto Pasien (Diperbaiki agar tidak lebar) */
+  .patient-img {
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* 5. Tipografi */
+  body, p, a, div, h1, h2, h3, h4, h5, h6 {
+    font-size: 12px !important;
+  }
+
+  /* 6. Pengaturan Tabel */
+  table { width: 100%; }
+  th { width: 200px; vertical-align: top; }
+
+  /* Mencegah tulisan di sidebar turun ke bawah */
+.sidebar a {
+    white-space: nowrap !important;
+    display: block;
+    text-decoration: none; /* Menghilangkan garis bawah link jika ada */
+}
+
+/* Jika tulisannya masih terlihat terlalu mepet atau terpotong */
+.sidebar {
+    width: 210px !important; /* Sedikit memperlebar sidebar agar tulisan muat */
+}
+
+/* Agar konten utama tidak tertutup karena sidebar dilebarkan */
+.content {
+    margin-left: 210px !important;
+}

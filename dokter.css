@@ -1,0 +1,70 @@
+/* --- Tampilan Kartu Dokter (Pastel Dream Theme) --- */
+
+.card {
+  padding: 10px; /* Sedikit ditambah agar tidak terlalu mepet */
+  border-radius: 12px;
+  border: 1px solid rgba(195, 190, 240, 0.3); /* Border tipis menggunakan aksen .third-color */
+  height: 100%; /* Menggunakan 100% agar kartu sejajar */
+  box-shadow: 0 4px 6px rgba(195, 190, 240, 0.1); /* Shadow halus bernuansa pastel */
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(195, 190, 240, 0.25);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card-body {
+  padding: 10px 5px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2b2b2b; /* Menggunakan warna teks gelap yang senada dengan file lainnya */
+  margin-bottom: 8px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Mengatur agar kartu dalam baris selalu sama tingginya */
+.row-cols-lg-4 > .col {
+  display: flex;
+}
+
+/* Tombol Pastel (Menggantikan Emas / btn-success hijau) */
+.btn-success {
+  background-color: #cca8e9 !important; /* Menggunakan .fourth-color (ungu pastel) */
+  border: none !important;
+  color: #2b2b2b !important;            /* Teks gelap agar kontras dengan warna pastel */
+  font-size: 14px;
+  padding: 6px 15px !important;
+  border-radius: 6px !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #c3bef0 !important; /* Berubah ke .third-color saat di-hover */
+  color: #000000 !important;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 180px;
+  }
+}

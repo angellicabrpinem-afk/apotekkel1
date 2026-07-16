@@ -1,0 +1,96 @@
+body {
+  background-color: #defcf9; /* Menggunakan .first-color (toska pastel sangat muda) */
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.payment-container, .success-message {
+  max-width: 600px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(195, 190, 240, 0.15); /* Shadow lembut bernuansa pastel */
+  transition: all 0.4s ease;
+  margin: auto;
+  margin-top: 50px;
+  border: 1px solid rgba(195, 190, 240, 0.2);
+}
+
+h1, h2 {
+  color: #cca8e9; /* Menggunakan .fourth-color (ungu pastel utama) */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.payment-option {
+  margin-bottom: 20px;
+  border: 1px solid #cadefc; /* Menggunakan .second-color (biru muda pastel) */
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: 0.2s ease-in-out;
+}
+
+.payment-option:hover {
+  background-color: #cadefc; /* Berubah menjadi biru muda pastel saat di-hover */
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #cca8e9; /* Mengubah warna bulatan radio button agar senada */
+}
+
+.payment-option label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b2b2b; /* Warna teks gelap yang nyaman dibaca */
+}
+
+.payment-details {
+  margin-top: 8px;
+  padding-left: 30px;
+  color: #555555;
+  font-size: 14px;
+}
+
+.payment-button, .dashboard-button {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #cca8e9; /* Menggunakan .fourth-color */
+  color: #2b2b2b;            /* Teks gelap agar kontras */
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.payment-button:hover, .dashboard-button:hover {
+  background-color: #c3bef0; /* Berubah ke .third-color saat di-hover */
+  color: #000000;
+}
+
+.success-message {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-message p {
+  color: #444;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
