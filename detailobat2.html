@@ -32,61 +32,58 @@
     <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
     <a href="index.html">🏠 Beranda</a>
     
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-          <span>📁 Data</span>
-          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-        </a>
-        
-        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-          <a href="dataobat.html" class="active">💊 Data Obat</a>
-          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="rekammedis.html">📋 Rekam Medis</a>
-          <a href="Penjualan.html">🛒 Penjualan</a>
-          <a href="user.html">🧑‍🧒‍🧒 User</a>
-        </div>
-  
-        <a href="laporan.html">📈 Laporan</a>
-        <a href="logout.html">🚪 Logout</a>
-      </nav>
+    <a href="#subMenuData" data-bs-toggle="collapse" aria-expanded="true">📁 Data ▾</a>
+    <div class="collapse show" id="subMenuData" style="padding-left: 10px;">
+      <a href="dataobat.html" class="active">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="riwayatkunjungan.html">📋 Rekam Medis</a>
+      <a href="Penjualan.html">🛒 Penjualan</a>
+      <a href="user.html">🧑‍🧒‍🧒 User</a>
+    </div>
+
+    <a href="laporan.html">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
 
   <!-- Konten -->
   <main class="main-wrapper">
     <div class="container">
       <h2 class="fw-bold mb-4">Detail Obat</h2>
       
-      <div class="card p-4">
-        <div class="row">
-          <br>
-          <br>
-          <br>
-          <!-- Foto Obat -->
-          <div class="col-md-4 text-center">
-            <img src="aset/decolsin.jpg" alt="Decolsin" class="img-fluid rounded shadow-sm mb-3" style="max-height: 300px;">
-          </div>
-          
-          <!-- Informasi Obat -->
-          <div class="col-md-8">
-            <table class="table table-borderless m-0">
-              <tbody>
-                <tr><th>Nama Obat</th><td>: Decolsin</td></tr>
-                <tr><th>Golongan</th><td>: Obat Bebas Terbatas</td></tr>
-                <tr><th>Bentuk</th><td>: Kapsul / Tablet</td></tr>
-                <tr><th>Stok</th><td>: <span class="badge bg-success">150</span></td></tr>
-                <tr><th>Harga</th><td>: Rp 10.000</td></tr>
-                <tr><th>Expired</th><td>: 2027-08-20</td></tr>
-                <tr><th>Manfaat</th><td>: Meredakan gejala flu (demam, sakit kepala, batuk).</td></tr>
-                <tr><th>Dosis</th><td>: Dewasa: 1 kapsul (3-4x sehari); Anak: 1/2 kapsul.</td></tr>
-                <tr><th>Aturan Pakai</th><td>: Diminum sesudah makan.</td></tr>
-                <tr><th>Efek Samping</th><td>: Mengantuk, mulut kering, pusing.</td></tr>
-                <tr><th>Kontraindikasi</th><td>: Gangguan jantung, diabetes melitus.</td></tr>
-              </tbody>
-            </table>
-            <div class="mt-4">
-              <a href="dataobat.html" class="btn btn-secondary">🔙 Kembali</a>
-            </div>
-          </div>
-        </div>
+      <!-- Bagian di dalam card p-4 -->
+<div class="card p-4">
+  <!-- d-flex align-items-center ini yang membuat foto otomatis di tengah secara vertikal -->
+  <div class="row align-items-center">
+    
+    <!-- Foto Obat -->
+    <div class="col-md-4 text-center">
+      <img src="aset/decolsin.jpg" alt="Decolsin" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+    </div>
+    
+    <!-- Informasi Obat -->
+    <div class="col-md-8">
+      <table class="table table-borderless m-0">
+        <tbody>
+          <tr><th>Nama Obat</th><td>: Decolsin</td></tr>
+          <tr><th>Golongan</th><td>: Obat Bebas Terbatas</td></tr>
+          <tr><th>Bentuk</th><td>: Kapsul / Tablet</td></tr>
+          <tr><th>Stok</th><td>: <span class="badge bg-success">150</span></td></tr>
+          <tr><th>Harga</th><td>: Rp 10.000</td></tr>
+          <tr><th>Expired</th><td>: 2027-08-20</td></tr>
+          <tr><th>Manfaat</th><td>: Meredakan gejala flu (demam, sakit kepala, batuk).</td></tr>
+          <tr><th>Dosis</th><td>: Dewasa: 1 kapsul (3-4x sehari); Anak: 1/2 kapsul.</td></tr>
+          <tr><th>Aturan Pakai</th><td>: Diminum sesudah makan.</td></tr>
+          <tr><th>Efek Samping</th><td>: Mengantuk, mulut kering, pusing.</td></tr>
+          <tr><th>Kontraindikasi</th><td>: Gangguan jantung, diabetes melitus.</td></tr>
+        </tbody>
+      </table>
+      <div class="mt-4">
+        <a href="dataobat.html" class="btn btn-secondary">🔙 Kembali</a>
       </div>
+    </div>
+    
+  </div>
+</div>
     </div>
   </main>
   
