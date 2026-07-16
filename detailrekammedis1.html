@@ -4,257 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detail Pasien - GoApotek</title>
-  <!-- Bootstrap CSS Online -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <!-- Bootstrap Icons Online -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="styledashboard.css">
-  
-   <style>
-  /* 1. Pengaturan Dasar (Reset & Global) */
-  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-  }
-
-  body {
-    padding: 0 60px 0 20px; /* Gabungan padding-right: 60px dan padding-left: 0px */
-    font-size: 12px !important;
-  }
-
-  /* 2. Pengaturan Tipografi (Semua teks jadi 12px) */
-  body, p, a, div, h1, h2, h3, h4, h5, h6 {
-    font-size: 12px !important;
-  }
-
-  /* 3. Komponen Avatar */
-  .icon-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  /* 4. Pengaturan Tabel */
-  table {
-    width: 100%;
-  }
-
-  th {
-    width: 200px;
-    white-space: nowrap;
-    vertical-align: top;
-  }
-
-  /* 5. Pengaturan Konten */
-  .content {
-    overflow-x: hidden;
-  }
-</style>
-</head>
-
-<body class="ghibli-bg">
-
-<div class="container-fluid">
-  <div class="row">
+  <style>
+    /* Dasar */
+    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
     
-    <!-- ================= SIDEBAR NAVIGASI (OTOMATIS TERBUKA KHUSUS SUB-DATA) ================= -->
-    <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-      <div class="sidebar-logo mb-4">
-        <span>💊</span> GoApotek
-      </div>
-      <a href="index.html">🏠 Dashboard</a>
-      
-      <!-- MENU UTAMA: DATA (aria-expanded="true" karena otomatis terbuka) -->
-      <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
-        <span>📁 Data</span>
-        <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-      </a>
-      
-      <!-- ISI SUB MENU (Menu Rekam Medis diset aktif dan terbuka otomatis) -->
-      <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-        <a href="dataobat.html">💊 Data Obat</a>
-        <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-        <a href="riwayatkunjungan.html" class="active">📋 Rekam Medis</a>
-        <a href="Penjualan.html">🛒 Penjualan</a>
-        <a href="user.html">🧑‍🧒‍🧒 User</a>
-      </div>
+    /* Sidebar */
+    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+    
+    /* Layout Utama */
+    .main-wrapper { margin-left: 200px; padding: 20px; }
+    .container { max-width: 1140px; }
+    
+    /* Card Detail */
+    .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 10px; }
+    th { width: 180px; color: #555; vertical-align: top; }
+  </style>
+</head>
+<body>
 
-      <!-- Menu Lain di Luar Dropdown Data -->
-      <a href="laporan.html">📈 Laporan</a>
-      <a href="logout.html">🚪 Logout</a>
-    </nav>
-
-    <!-- ================= AREA KONTEN UTAMA DETAIL REKAM MEDIS 1 ================= -->
-    <main class="col-md-9 col-lg-10 content py-4 px-4">
-      <div class="container py-4">
-        <div class="row mb-4 align-items-center">
-          <div class="col-auto">
-            <img src="aset/pasien1.jpeg" alt="Foto Pasien" class="icon-avatar">
-          </div>
-          <div class="col">
-            <h3 class="mb-1">La Ode Umar La Maju</h3>
-            <p class="mb-0"><strong>No. RM:</strong> RM-0001</p>
-            <p class="mb-0">Laki-laki • 21 tahun</p>
-          </div>
-          <div class="col text-end">
-            <a href="riwayatkunjungan.html" class="btn btn-outline-secondary">← Kembali ke Rekam Medis</a>
-          </div>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+          <span>📁 Data</span>
+          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+        </a>
+        
+        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+          <a href="dataobat.html">💊 Data Obat</a>
+          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+          <a href="rekammedis.html" class="active">📋 Rekam Medis</a>
+          <a href="Penjualan.html">🛒 Penjualan</a>
+          <a href="user.html">🧑‍🧒‍🧒 User</a>
         </div>
+  
+        <a href="laporan.html">📈 Laporan</a>
+        <a href="logout.html">🚪 Logout</a>
+      </nav>
 
-        <h5 class="mb-3 text-secondary">📖 Rekam Medis (Terbaru di atas)</h5>
-
-        <div class="accordion accordion-flush" id="riwayatAccordion">
-
-          <!-- Rekam Medis: 1 Juni 2026 (Terbaru - Otomatis Terbuka) -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading0">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true" aria-controls="collapse0">
-                1 Juni 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: Tinea versicolor</small>
-              </button>
-            </h2>
-            <div id="collapse0" class="accordion-collapse collapse show" aria-labelledby="heading0" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Gatal-gatal sejak 2 days lalu...</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 118/78, Nadi: 80x/menit, Suhu: 39,2°C, BB: 59 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Tinea versicolor (Panu)</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Kapsida x3 / hari.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Gunakan pakaian katun longgar, keringkan tubuh segera setelah berkeringat, rutin ganti handuk. Sabun antijamur didiamkan 5 menit sebelum dibilas. Istirahat cukup untuk meningkatkan imun. Kembali jika tidak ada perubahan dalam 2 minggu.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>19 Juni 2026 (tele-konsultasi)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Rekam Medis: 15 Mei 2026 -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading1">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                15 Mei 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: Flu & Demam</small>
-              </button>
-            </h2>
-            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Demam tinggi (+39°C), batuk kering sejak 2 hari lalu...</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 118/78, Nadi: 80x/menit, Suhu: 39,2°C, BB: 59 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Influenza - kemungkinan virus non-COVID</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Paracetamol 500 mg x3 / hari, istirahat, banyak cairan.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Istirahat cukup dan jaga hidrasi tubuh.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>29 Mei 2026 (tele-konsultasi)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Rekam Medis: 1 April 2026 -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading2">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                1 April 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: ISPA</small>
-              </button>
-            </h2>
-            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Keluhan batuk berdahak dan demam 38°C selama 3 hari...</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 115/75, Saturasi O₂: 98%, BB: 60 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Infeksi saluran pernapasan akut</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Amoksisilin-Klavulanat 625 mg x 3 x7 hari, cuka air hangat, banyak minum air putih.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Istirahat total 48 jam pertama, hindari paparan asap rokok.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>12 April 2026 (kunjungan langsung)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Rekam Medis: 02 Maret 2026 -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading3">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                02 Maret 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: Stres & Insomnia</small>
-              </button>
-            </h2>
-            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Ia mengeluhkan gangguan tidur sejak dua minggu terakhir...</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 120/80 mmHg, Nadi: 78xmenit, BB: 62 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Stress-related insomnia</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Obat: Zolpidem 10 mg sebelum tidur, relaksasi napas dalam, batasi konsumsi kafein.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Buat jadwal tidur konsisten, hindari interaksi sosial media 2 jam sebelum tidur.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>09 Maret 2026 (tele-konsultasi)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Rekam Medis: 15 Februari 2026 -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading4">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                15 Februari 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: Anxiety Disorder & Insomnia</small>
-              </button>
-            </h2>
-            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Pasien masih mengalami gangguan tidur, kini disertai kecemasan berlebih, gelisah, dan sulit fokus.</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 118/76 mmHg, Nadi: 80x/menit, BB: 61 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Generalized Anxiety Disorder (GAD), insomnia</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Obat: Sertraline 25 mg per hari, terapi kognitif perilaku (CBT), teknik relaksasi progresif otot.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Rutin olahraga ringan, hindari alkohol/nikotin, praktikkan mindfulness setiap hari.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>22 Februari 2026 (kunjungan langsung)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Rekam Medis: 05 Januari 2026 -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading5">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                05 Januari 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: GERD & Anxiety</small>
-              </button>
-            </h2>
-            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body">
-                <table class="table table-bordered bg-white">
-                  <tbody>
-                    <tr><th>Subjektif</th><td>Pasien mengeluhkan nyeri ulu hati, mual terutama saat malam, disertai kecemasan berulang.</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 117/75 mmHg, Nadi: 76×/menit, BB: 60 kg</td></tr>
-                    <tr><th>Diagnosa</th><td>Gastroesophageal Reflux Disease (GERD), Anxiety</td></tr>
-                    <tr><th>Penatalaksanaan</th><td>Obat: Omeprazole 20 mg setiap pagi sebelum makan, posisi kepala lebih tinggi saat tidur, hindari makanan pedas/berlemak.</td></tr>
-                    <tr><th>Saran / Edukasi</th><td>Makan porsi kecil, hindari makan 3 jam sebelum tidur, lanjutkan terapi relaksasi untuk kecemasan.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>28 Januari 2026 (tele-konsultasi)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
+  <!-- Konten -->
+  <main class="main-wrapper">
+    <div class="container">
+      <div class="row mb-4 align-items-center">
+        <div class="col-auto">
+          <img src="aset/pasien1.jpeg" alt="Foto Pasien" class="icon-avatar">
+        </div>
+        <div class="col">
+          <h3 class="mb-1 fw-bold">La Ode Umar La Maju</h3>
+          <p class="mb-0"><strong>No. RM:</strong> RM-0001</p>
+          <p class="mb-0">Laki-laki • 21 tahun</p>
+        </div>
+        <div class="col text-end">
+          <a href="riwayatkunjungan.html" class="btn btn-secondary">← Kembali</a>
         </div>
       </div>
-    </main>
 
-  </div>
-</div>
+      <h5 class="mb-3 text-secondary fw-bold">📖 Rekam Medis</h5>
 
-<!-- Bootstrap JS Online -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <div class="accordion accordion-flush shadow-sm" id="riwayatAccordion">
+        <!-- Rekam Medis Item (Contoh 1) -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading0">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true">
+              1 Juni 2026 — Dr. Tirta Mandira Hudhi <small class="text-muted ms-2">Diagnosa: Tinea versicolor</small>
+            </button>
+          </h2>
+          <div id="collapse0" class="accordion-collapse collapse show" data-bs-parent="#riwayatAccordion">
+            <div class="accordion-body">
+              <table class="table table-bordered bg-white">
+                <tbody>
+                  <tr><th>Subjektif</th><td>Gatal-gatal sejak 2 hari lalu...</td></tr>
+                  <tr><th>Vitals</th><td>Tensi: 118/78, Nadi: 80x/menit, Suhu: 39,2°C, BB: 59 kg</td></tr>
+                  <tr><th>Diagnosa</th><td>Tinea versicolor (Panu)</td></tr>
+                  <tr><th>Penatalaksanaan</th><td>Kapsida x3 / hari.</td></tr>
+                  <tr><th>Saran / Edukasi</th><td>Gunakan pakaian katun longgar, rutin ganti handuk.</td></tr>
+                  <tr><th>Next Follow-Up</th><td>19 Juni 2026</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Anda bisa menambahkan item accordion lainnya dengan struktur yang sama di sini -->
+      </div>
+    </div>
+  </main>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
