@@ -6,193 +6,125 @@
   <title>Laporan Transaksi - GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="styledashboard.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="laporan.css">
   
-<style>
-  /* 1. Pengaturan Layout Dasar */
-  html, body {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
-    background-color: #e0f7fa; /* Warna latar belakang dari screenshot */
-  }
-
-  /* 2. Sidebar (Menempel di kiri) */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100vh;
-    background-color: #cca8e9; /* Warna sidebar Anda */
-    padding: 20px 10px;
-    z-index: 1000;
-  }
-
-  /* 3. Konten Utama (Memberi jarak agar tidak tertutup sidebar) */
-  .content {
-    margin-left: 200px; /* Menyesuaikan lebar sidebar */
-    padding: 20px 40px;
-  }
-
-  /* 4. Komponen Foto Pasien (Diperbaiki agar tidak lebar) */
-  .patient-img {
-    width: 120px !important;
-    height: 120px !important;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  /* 5. Tipografi */
-  body, p, a, div, h1, h2, h3, h4, h5, h6 {
-    font-size: 12px !important;
-  }
-
-  /* 6. Pengaturan Tabel */
-  table { width: 100%; }
-  th { width: 200px; vertical-align: top; }
-</style>
+  <style>
+    /* Dasar */
+    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
+    
+    /* Sidebar */
+    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+    
+    /* Layout Utama */
+    .main-wrapper { margin-left: 200px; padding: 20px; }
+    .container { max-width: 1140px; }
+    
+    /* Report Card */
+    .report-card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .chart-container { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+  </style>
 </head>
+<body>
 
-<body class="ghibli-bg">
-  <!-- Menggunakan container-fluid sebagai pembungkus paling luar seperti halaman beranda -->
-  <div class="container-fluid">
-    <div class="row">
-      
-      <!-- Sidebar Kiri (Mengikuti struktur col bootstrap beranda) -->
-      <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-        <div class="sidebar-logo mb-4">
-          <span>💊</span> GoApotek
-        </div>
-        <a href="index.html">🏠 Dashboard</a>
-        
-        <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
           <span>📁 Data</span>
           <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
         </a>
         
-        <!-- ISI SUB MENU (Menu Rekam Medis diset aktif dan terbuka otomatis) -->
         <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
           <a href="dataobat.html">💊 Data Obat</a>
           <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="riwayatkunjungan.html">📋 Rekam Medis</a>
+          <a href="rekammedis.html">📋 Rekam Medis</a>
           <a href="Penjualan.html">🛒 Penjualan</a>
-         <a href="user.html">🧑‍🧒‍🧒 User</a>
+          <a href="user.html">🧑‍🧒‍🧒 User</a>
         </div>
-
+  
         <a href="laporan.html" class="active">📈 Laporan</a>
         <a href="logout.html">🚪 Logout</a>
       </nav>
 
-      <!-- Main Content Area -->
-      <main class="col-md-9 col-lg-10 content py-4 px-4">
-        
-        <!-- Judul Halaman -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="fw-bold">Laporan Transaksi</h2>
-        </div>
+  <!-- Konten -->
+  <main class="main-wrapper">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Laporan Transaksi</h2>
 
-        <!-- Bagian Isi Laporan (Grid Kartu Detail Laporan) -->
-        <div class="container-fluid px-0 mt-4">
-          <div class="row g-3">
-            <!-- Harian -->
-            <div class="col-sm-6 col-xl-3">
-              <div class="report-card p-3 border rounded bg-white shadow-sm">
-                <div class="report-title text-primary fw-bold mb-2">Laporan Harian</div>
-                <table class="table table-sm table-borderless mb-3">
-                  <tbody>
-                    <tr><td class="fw-semibold">Tanggal</td><td>: 21 Juni 2026</td></tr>
-                    <tr><td class="fw-semibold">Total</td><td>: Rp 1.070.000</td></tr>
-                    <tr><td class="fw-semibold">Item</td><td>: 70</td></tr>
-                  </tbody>
-                </table>
-                <a href="harian.html" class="btn btn-outline-primary w-100 btn-detail">Lihat Detail</a>
-              </div>
-            </div>
-            
-            <!-- Mingguan -->
-            <div class="col-sm-6 col-xl-3">
-              <div class="report-card p-3 border rounded bg-white shadow-sm">
-                <div class="report-title text-success fw-bold mb-2">Laporan Mingguan</div>
-                <table class="table table-sm table-borderless mb-3">
-                  <tbody>
-                    <tr><td class="fw-semibold">Periode</td><td>: 01-07 Juli 2026</td></tr>
-                    <tr><td class="fw-semibold">Total</td><td>: Rp 9.435.000</td></tr>
-                    <tr><td class="fw-semibold">Item</td><td>: 1.005</td></tr>
-                  </tbody>
-                </table>
-                <a href="mingguan.html" class="btn btn-outline-success w-100 btn-detail">Lihat Detail</a>
-              </div>
-            </div>
-            
-            <!-- Bulanan -->
-            <div class="col-sm-6 col-xl-3">
-              <div class="report-card p-3 border rounded bg-white shadow-sm">
-                <div class="report-title text-info fw-bold mb-2">Laporan Bulanan</div>
-                <table class="table table-sm table-borderless mb-3">
-                  <tbody>
-                    <tr><td class="fw-semibold">Bulan</td><td>: Juni 2026</td></tr>
-                    <tr><td class="fw-semibold">Total</td><td>: Rp 18.000.000</td></tr>
-                    <tr><td class="fw-semibold">Item</td><td>: 1.760</td></tr>
-                  </tbody>
-                </table>
-                <a href="bulanan.html" class="btn btn-outline-info w-100 btn-detail">Lihat Detail</a>
-              </div>
-            </div>
-            
-            <!-- Tahunan -->
-            <div class="col-sm-6 col-xl-3">
-              <div class="report-card p-3 border rounded bg-white shadow-sm">
-                <div class="report-title text-danger fw-bold mb-2">Laporan Tahunan</div>
-                <table class="table table-sm table-borderless mb-3">
-                  <tbody>
-                    <tr><td class="fw-semibold">Tahun</td><td>: 2026</td></tr>
-                    <tr><td class="fw-semibold">Total</td><td>: Rp 199.200.000</td></tr>
-                    <tr><td class="fw-semibold">Item</td><td>: 19.950</td></tr>
-                  </tbody>
-                </table>
-                <a href="tahunan.html" class="btn btn-outline-danger w-100 btn-detail">Lihat Detail</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bagian Grafik Canvas -->
-          <div class="row mt-5 g-4">
-            <div class="col-md-6 col-xl-3">
-              <h6 class="mb-3 fw-bold text-primary text-center">Grafik Harian (Jam)</h6>
-              <div class="bg-white p-2 rounded shadow-sm"><canvas id="harianChart" height="220"></canvas></div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <h6 class="mb-3 fw-bold text-success text-center">Grafik Mingguan</h6>
-              <div class="bg-white p-2 rounded shadow-sm"><canvas id="laporanChart" height="220"></canvas></div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <h6 class="mb-3 fw-bold text-info text-center">Grafik Bulanan (Minggu)</h6>
-              <div class="bg-white p-2 rounded shadow-sm"><canvas id="bulananChart" height="220"></canvas></div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <h6 class="mb-3 fw-bold text-danger text-center">Grafik Tahunan (Bulan)</h6>
-              <div class="bg-white p-2 rounded shadow-sm"><canvas id="tahunanChart" height="220"></canvas></div>
-            </div>
+      <!-- Grid Laporan -->
+      <div class="row g-3">
+        <div class="col-sm-6 col-xl-3">
+          <div class="report-card">
+            <div class="text-primary fw-bold mb-2">Laporan Harian</div>
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr><td>Tanggal</td><td>: 21 Juni 2026</td></tr>
+                <tr><td>Total</td><td>: Rp 1.070.000</td></tr>
+              </tbody>
+            </table>
+            <a href="harian.html" class="btn btn-outline-primary btn-sm w-100">Lihat Detail</a>
           </div>
         </div>
-        <br>
-      </main>
+        <div class="col-sm-6 col-xl-3">
+          <div class="report-card">
+            <div class="text-success fw-bold mb-2">Laporan Mingguan</div>
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr><td>Periode</td><td>: 01-07 Juli</td></tr>
+                <tr><td>Total</td><td>: Rp 9.435.000</td></tr>
+              </tbody>
+            </table>
+            <a href="mingguan.html" class="btn btn-outline-success btn-sm w-100">Lihat Detail</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="report-card">
+            <div class="text-info fw-bold mb-2">Laporan Bulanan</div>
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr><td>Bulan</td><td>: Juni 2026</td></tr>
+                <tr><td>Total</td><td>: Rp 18.000.000</td></tr>
+              </tbody>
+            </table>
+            <a href="bulanan.html" class="btn btn-outline-info btn-sm w-100">Lihat Detail</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="report-card">
+            <div class="text-danger fw-bold mb-2">Laporan Tahunan</div>
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr><td>Tahun</td><td>: 2026</td></tr>
+                <tr><td>Total</td><td>: Rp 199.200.000</td></tr>
+              </tbody>
+            </table>
+            <a href="tahunan.html" class="btn btn-outline-danger btn-sm w-100">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Grafik -->
+      <div class="row mt-4 g-3">
+        <div class="col-md-3"><h6 class="text-center fw-bold">Grafik Harian</h6><div class="chart-container"><canvas id="harianChart"></canvas></div></div>
+        <div class="col-md-3"><h6 class="text-center fw-bold">Grafik Mingguan</h6><div class="chart-container"><canvas id="laporanChart"></canvas></div></div>
+        <div class="col-md-3"><h6 class="text-center fw-bold">Grafik Bulanan</h6><div class="chart-container"><canvas id="bulananChart"></canvas></div></div>
+        <div class="col-md-3"><h6 class="text-center fw-bold">Grafik Tahunan</h6><div class="chart-container"><canvas id="tahunanChart"></canvas></div></div>
+      </div>
     </div>
-  </div>
+  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    const formatRupiah = (value) => 'Rp ' + value.toLocaleString('id-ID');
-    new Chart(document.getElementById('harianChart').getContext('2d'), { type: 'bar', data: { labels: ['08:00', '11:00', '14:00', '17:00', '20:00'], datasets: [{ data: [150000, 320000, 120000, 280000, 200000], backgroundColor: '#0d6efd', borderRadius: 5 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: formatRupiah } } } } });
-    new Chart(document.getElementById('laporanChart').getContext('2d'), { type: 'bar', data: { labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'], datasets: [{ data: [2000000, 1050000, 1110000, 3350000, 125000, 900000, 1000000], backgroundColor: '#28a745', borderRadius: 5 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: formatRupiah } } } } });
-    new Chart(document.getElementById('bulananChart').getContext('2d'), { type: 'bar', data: { labels: ['W1', 'W2', 'W3', 'W4'], datasets: [{ data: [4200000, 4800000, 3900000, 5100000], backgroundColor: '#0dcaf0', borderRadius: 5 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: formatRupiah } } } } });
-    new Chart(document.getElementById('tahunanChart').getContext('2d'), { type: 'line', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], datasets: [{ data: [12000000, 15500000, 13200000, 18000000, 19500000, 11500000, 14000000, 16500000, 14800000, 17200000, 16000000, 21000000], borderColor: '#dc3545', backgroundColor: 'rgba(220, 53, 69, 0.1)', fill: true, tension: 0.3, borderWidth: 2 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: formatRupiah } } } } });
+    const formatRupiah = (v) => 'Rp ' + v.toLocaleString('id-ID');
+    const chartOptions = { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: formatRupiah, font: { size: 10 } } } } };
+    new Chart(document.getElementById('harianChart'), { type: 'bar', data: { labels: ['08', '11', '14', '17', '20'], datasets: [{ data: [150000, 320000, 120000, 280000, 200000], backgroundColor: '#0d6efd' }] }, options: chartOptions });
+    new Chart(document.getElementById('laporanChart'), { type: 'bar', data: { labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum'], datasets: [{ data: [2000000, 1050000, 1110000, 3350000, 125000], backgroundColor: '#28a745' }] }, options: chartOptions });
+    new Chart(document.getElementById('bulananChart'), { type: 'bar', data: { labels: ['W1', 'W2', 'W3', 'W4'], datasets: [{ data: [4200000, 4800000, 3900000, 5100000], backgroundColor: '#0dcaf0' }] }, options: chartOptions });
+    new Chart(document.getElementById('tahunanChart'), { type: 'line', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'], datasets: [{ data: [12, 15, 13, 18, 19], borderColor: '#dc3545', fill: true }] }, options: chartOptions });
   </script>
 </body>
 </html>
