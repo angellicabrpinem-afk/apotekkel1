@@ -21,7 +21,7 @@
     .container { max-width: 1140px; }
     
     /* Tabel */
-    .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
     
     /* Print */
     @media print { .no-print { display: none; } }
@@ -55,26 +55,25 @@
   <main class="main-wrapper">
     <div class="container">
       
-      <!-- KOP Surat -->
-      <div class="text-center mb-4">
+      <!-- Kop Surat (Tersembunyi di layar, muncul saat print) -->
+      <div class="text-center mb-4 d-none d-print-block">
         <h3 class="fw-bold">APOTEK GO-APOTEK</h3>
-        <p class="mb-0">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
+        <p>Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-3 no-print">
-        <h4 class="mb-0">Detail Penjualan Harian</h4>
+        <h2 class="fw-bold">Detail Penjualan Harian</h2>
         <div class="d-flex gap-2">
-          <a href="laporan.html" class="btn btn-secondary">Kembali</a>
-          <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak Laporan</button>
+          <a href="laporan.html" class="btn btn-secondary">🔙 Kembali</a>
+          <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak</button>
         </div>
       </div>
 
-      <p class="mb-2">Tanggal: <strong>21 Juni 2026</strong></p>
+      <p class="mb-3">Tanggal Laporan: <strong>21 Juni 2026</strong></p>
 
-      <!-- Tabel -->
       <div class="table-container">
         <table class="table table-bordered table-hover align-middle">
-          <thead class="table-dark">
+          <thead class="table-light">
             <tr>
               <th>No</th>
               <th>Waktu</th>
@@ -94,8 +93,8 @@
             <tr><td>7</td><td>14:00</td><td>Decolsin</td><td>2</td><td>Rp 10.000</td><td>Rp 20.000</td></tr>
             <tr><td>8</td><td>14:45</td><td>Kapsida</td><td>3</td><td>Rp 30.000</td><td>Rp 90.000</td></tr>
             <tr><td>9</td><td>15:33</td><td>Paracetamol</td><td>10</td><td>Rp 15.000</td><td>Rp 150.000</td></tr>
-            <tr class="fw-bold table-secondary">
-              <td colspan="5" class="text-end">Total Penjualan Hari Ini</td>
+            <tr class="fw-bold table-active">
+              <td colspan="5" class="text-end">Total Penjualan</td>
               <td>Rp 1.070.000</td>
             </tr>
           </tbody>
@@ -103,7 +102,7 @@
       </div>
 
       <!-- Tanda Tangan -->
-      <div class="row mt-4">
+      <div class="row mt-5">
         <div class="col-8"></div>
         <div class="col-4 text-center">
           <p class="mb-1">Jakarta, 21 Juni 2026</p>
@@ -112,6 +111,7 @@
           <p class="fw-bold">( _________________ )</p>
         </div>
       </div>
+      
     </div>
   </main>
 
