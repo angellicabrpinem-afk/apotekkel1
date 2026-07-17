@@ -8,31 +8,43 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-    /* Reset & Dasar */
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 0; background-color: #e0f7fa; font-size: 12px !important; display: flex; min-height: 100vh; }
+  /* 1. Pengaturan Dasar - Harus SAMA PERSIS */
+  body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: #e0f7fa; 
+    font-size: 13px !important; 
+  }
 
-    /* Sidebar */
-    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-    
-    .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 1.2rem; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+  /* 2. SIDEBAR - DIKUNCI 200px (SAMA PERSIS DI SEMUA FILE) */
+  .sidebar { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 200px; 
+    height: 100vh; 
+    background-color: #cca8e9; 
+    padding: 20px 10px; 
+    z-index: 1000; 
+  }
 
-    /* KONTEN UTAMA - FLEXIBEL */
-    .content { flex: 1; padding: 25px; }
+  .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 1.2rem; }
+  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-    /* KARTU USER - PATEN */
-    .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
-    .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .card-img-top { height: 180px; object-fit: cover; }
-    
-    /* Tipografi */
-    h2 { font-size: 1.4rem !important; }
-    .card-title { font-weight: bold; font-size: 13px; }
-  </style>
+  /* 3. LAYOUT UTAMA - WAJIB MENGGUNAKAN MARGIN-LEFT 200px */
+  /* Di file manapun, konten utama HARUS punya margin-left 200px agar rapi */
+  .main-wrapper, .content { 
+    margin-left: 200px; 
+    padding: 20px; 
+  }
+
+  /* 4. KOMPONEN KARTU (Hanya akan aktif di file yang punya kartu) */
+  .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
+  .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  .card-img-top { height: 180px; object-fit: cover; }
+  .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+</style>
 </head>
 <body>
 
