@@ -20,9 +20,12 @@
     .main-wrapper { margin-left: 200px; padding: 20px; }
     .container { max-width: 1140px; }
     
-    /* Card Stat */
-    .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
-    .card-stat:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+    /* Pengaturan Gambar Bulat */
+    .icon-avatar {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
   </style>
 </head>
 <body>
@@ -30,32 +33,33 @@
   <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
-    <a href="index.html" class="active">🏠 Beranda</a>
+    <a href="index.html">🏠 Beranda</a>
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-          <span>📁 Data</span>
-          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-        </a>
-        
-        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-          <a href="dataobat.html">💊 Data Obat</a>
-          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="rekammedis.html" class="active">📋 Rekam Medis</a>
-          <a href="Penjualan.html">🛒 Penjualan</a>
-          <a href="user.html">🧑‍🧒‍🧒 User</a>
-        </div>
-  
-        <a href="laporan.html">📈 Laporan</a>
-        <a href="logout.html">🚪 Logout</a>
-      </nav>
+      <span>📁 Data</span>
+      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    </a>
+    
+    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+      <a href="dataobat.html">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="rekammedis.html" class="active">📋 Rekam Medis</a>
+      <a href="Penjualan.html">🛒 Penjualan</a>
+      <a href="user.html">🧑‍🧒‍🧒 User</a>
+    </div>
+
+    <a href="laporan.html">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
+
   <!-- Konten Utama -->
   <main class="main-wrapper">
     <div class="container">
       <h2 class="fw-bold mb-4">📋 Rekam Medis</h2>
       
-      <input id="searchInput" type="search" class="form-control search-bar" placeholder="🔎 Cari nama pasien..." autocomplete="off">
+      <input id="searchInput" type="search" class="form-control mb-3" placeholder="🔎 Cari nama pasien..." autocomplete="off">
 
-      <table class="table table-hover align-middle">
+      <table class="table table-hover align-middle bg-white rounded shadow-sm">
         <thead class="table-light">
           <tr>
             <th>Foto</th>
@@ -67,21 +71,21 @@
         </thead>
         <tbody id="patientTable">
           <tr data-name="la ode umar la maju">
-            <td><img src="aset/pasien1.jpeg" alt="Foto" class="icon-avatar"></td>
+            <td><img src="aset/pasien1.jpeg" alt="Foto" class="icon-avatar rounded-circle"></td>
             <td>La Ode Umar La Maju</td>
             <td>Laki-laki • 21 tahun</td>
             <td><strong>RM-0001</strong></td>
             <td class="text-center"><a href="detailrekammedis1.html" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a></td>
           </tr>
           <tr data-name="muhlis ramadani">
-            <td><img src="aset/pasien2.jpeg" alt="Foto" class="icon-avatar"></td>
+            <td><img src="aset/pasien2.jpeg" alt="Foto" class="icon-avatar rounded-circle"></td>
             <td>Muhlis Ramadani</td>
             <td>Laki-laki • 20 tahun</td>
             <td><strong>RM-0002</strong></td>
             <td class="text-center"><a href="detailrekammedis2.html" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a></td>
           </tr>
           <tr data-name="putry violita mustary">
-            <td><img src="aset/pasien rm3.jpeg" alt="Foto" class="icon-avatar"></td>
+            <td><img src="aset/pasien rm3.jpeg" alt="Foto" class="icon-avatar rounded-circle"></td>
             <td>Putry Violita Mustary</td>
             <td>Perempuan • 18 tahun</td>
             <td><strong>RM-0003</strong></td>

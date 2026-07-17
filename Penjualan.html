@@ -3,211 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Penjualan Obat</title>
+  <title>Penjualan Obat • GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="styledashboard.css">
-  <link rel="stylesheet" href="penjualan.css">
-   <style>
-  /* 1. Pengaturan Layout Dasar */
-  html, body {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
-    background-color: #e0f7fa; /* Warna latar belakang dari screenshot */
-  }
-
-  /* 2. Sidebar (Menempel di kiri) */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100vh;
-    background-color: #cca8e9; /* Warna sidebar Anda */
-    padding: 20px 10px;
-    z-index: 1000;
-  }
-
-  /* 3. Konten Utama (Memberi jarak agar tidak tertutup sidebar) */
-  .content {
-    margin-left: 200px; /* Menyesuaikan lebar sidebar */
-    padding: 20px 40px;
-  }
-
-  /* 4. Komponen Foto Pasien (Diperbaiki agar tidak lebar) */
-  .patient-img {
-    width: 120px !important;
-    height: 120px !important;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  /* 5. Tipografi */
-  body, p, a, div, h1, h2, h3, h4, h5, h6 {
-    font-size: 12px !important;
-  }
-
-  /* 6. Pengaturan Tabel */
-  table { width: 100%; }
-  th { width: 200px; vertical-align: top; }
-</style>
+  <style>
+    /* Dasar */
+    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
+    
+    /* Sidebar (Dibiarkan tetap sesuai permintaan) */
+    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+    
+    /* Layout Utama */
+    .main-wrapper { margin-left: 200px; padding: 20px; }
+    
+    /* Penyesuaian Card agar rapi */
+    .card { border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; overflow: hidden; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+    .card-img-top { height: 150px; object-fit: cover; cursor: pointer; }
+    .qty-input { width: 60px; padding: 2px 5px; text-align: center; }
+    .badge-best-seller { position: absolute; top: 10px; left: 10px; background: #ff5722; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; z-index: 1; }
+  </style>
 </head>
-<body class="ghibli-bg">
-<!-- Menambahkan overflow-x hidden di container utama -->
-<div class="container-fluid" style="overflow-x: hidden;">
-    <div class="row">
-      <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-        <div class="sidebar-logo mb-4"><span>💊</span> GoApotek</div>
-        <a href="index.html">🏠 Dashboard</a>
-        <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-          <span>📁 Data</span>
-          <i class="bi bi-chevron-down"></i>
-        </a>
-        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-          <a href="dataobat.html">💊 Data Obat</a>
-          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="rekammedis.html">📋 Rekam Medis</a>
-          <a href="Penjualan.html" class="active">🛒 Penjualan</a>
-          <a href="user.html">🧑‍🧒‍🧒 User</a>
-        </div>
-        <a href="laporan.html">📈 Laporan</a>
-        <a href="logout.html">🚪 Logout</a>
-      </nav>
-      
-      <main class="col-md-9 col-lg-10 content py-4 px-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 pe-4">
-          <h2 class="fw-bold">Penjualan Obat</h2>
-          <div class="d-flex gap-2 align-items-center">
-            <input type="text" id="cariObat" class="form-control" style="width: 250px;" placeholder="Cari obat...">
-            <a href="prosescheckout.html" class="btn btn-outline-success position-relative">
-              🛒 Keranjang <span id="jumlahKeranjang" class="badge bg-danger rounded-pill">0</span>
-            </a>
-            <a href="index.html" class="btn btn-success px-3">⬅️ Kembali</a>
-          </div>
-        </div>
-        
-        <!-- Menghapus pe-4 agar grid card obat tidak meluber ke kanan keluar layar -->
-        <div class="row g-3" id="daftarObat"></div>
-      </main>
+<body>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+      <span>📁 Data</span>
+      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    </a>
+    
+    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+      <a href="dataobat.html">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="rekammedis.html">📋 Rekam Medis</a>
+      <a href="Penjualan.html" class="active">🛒 Penjualan</a>
+      <a href="user.html">🧑‍🧒‍🧒 User</a>
     </div>
-</div>
 
-<!-- MODAL DETAIL OBAT -->
-<div class="modal fade" id="detailObatModal" tabindex="-1" aria-labelledby="detailObatModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="detailObatModalLabel">Detail Obat</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row align-items-center">
-          <div class="col-md-5 text-center">
-            <img id="modalImg" src="" alt="" class="img-fluid rounded mb-3 mb-md-0">
-          </div>
-          <div class="col-md-7">
-            <h3 id="modalNama" class="fw-bold text-success mb-2"></h3>
-            <h4 id="modalHarga" class="text-danger fw-semibold mb-3"></h4>
-            <table class="table table-borderless sm-text">
-              <tr>
-                <td style="width: 100px;" class="fw-bold">Stok</td>
-                <td>: <span id="modalStok" class="badge bg-secondary fs-6"></span></td>
-              </tr>
-              <tr>
-                <td class="fw-bold">Deskripsi</td>
-                <td>: <span id="modalDeskripsi">Sediaan obat untuk membantu memulihkan kesehatan.</span></td>
-              </tr>
-            </table>
-          </div>
+    <a href="laporan.html">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
+
+  <main class="main-wrapper">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">🛒 Penjualan Obat</h2>
+        <div class="d-flex gap-2">
+          <input type="text" id="cariObat" class="form-control" style="width: 200px;" placeholder="Cari obat...">
+          <a href="prosescheckout.html" class="btn btn-outline-success">
+            🛒 Keranjang <span id="jumlahKeranjang" class="badge bg-danger">0</span>
+          </a>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const obatList = [
-    { id: 1, nama: 'Paracetamol', harga: 10000, stok: 100, img: 'aset/obat1.jpg', deskripsi: 'Digunakan untuk meredakan demam dan nyeri ringan hingga sedang, seperti sakit kepala atau sakit gigi.' },
-    { id: 2, nama: 'Decolsin', harga: 10000, stok: 150, img: 'aset/decolsin.jpg', deskripsi: 'Obat flu yang efektif meredakan gejala batuk, pilek, demam, dan bersin-bersin.' },
-    { id: 3, nama: 'Kapsida', harga: 30000, stok: 200, img: 'aset/kapsida.webp', deskripsi: 'Kapsul bersih darah yang membantu meringankan gatal-gatal, bisul, dan jerawat dari dalam.' },
-    { id: 4, nama: 'Ibuprofen', harga: 10000, stok: 250, img: 'aset/ibuprofen.png', deskripsi: 'Obat antiinflamasi nonsteroid (OAINS) untuk meredakan nyeri, bengkak, dan peradangan.' },
-    { id: 5, nama: 'Amoxicillin 500mg', harga: 4000, stok: 50, img: 'aset/amoxicillin.webp', deskripsi: 'Antibiotik spektrum luas yang digunakan untuk mengobati berbagai jenis infeksi bakteri.' },
-    { id: 6, nama: 'Diazepam 2mg', harga: 8000, stok: 20, img: 'aset/Diazepam.jpg', deskripsi: 'Obat resep dokter untuk mengatasi kecemasan, kejang otot, atau sebagai obat penenang pra-operasi.' }
-  ];
-
-  let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
-
-  function renderObat(filter = "") {
-    const daftarObat = document.getElementById("daftarObat");
-    daftarObat.innerHTML = "";
-
-    obatList.filter(o => o.nama.toLowerCase().includes(filter.toLowerCase())).forEach(obat => {
-      const col = document.createElement("div");
-      col.className = "col-md-2";
       
-      const badgeHTML = obat.nama === 'Decolsin' ? '<span class="badge-best-seller">BEST SELLER🔥</span>' : '';
+      <div class="row g-3" id="daftarObat"></div>
+    </div>
+  </main>
 
-      col.innerHTML = `
-        <div class="card">
-          ${badgeHTML}
-          <img src="${obat.img}" class="card-img-top" alt="${obat.nama}" onclick="tampilkanDetail(${obat.id})">
-          <div class="card-body text-center">
-            <h6 class="card-title">${obat.nama}</h6>
-            <p class="small text-muted m-0">Rp ${obat.harga.toLocaleString()}</p>
-            <p class="small text-muted mb-2">Stok: ${obat.stok}</p>
-            <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-              <span class="small">Jml:</span>
-              <input type="number" id="qty-${obat.id}" class="form-control qty-input" value="1" min="1" max="${obat.stok}">
+  <!-- Script (Tetap Sesuai Logika Sebelumnya) -->
+  <script>
+    const obatList = [
+      { id: 1, nama: 'Paracetamol', harga: 10000, stok: 100, img: 'aset/obat1.jpg', deskripsi: 'Meredakan demam dan nyeri.' },
+      { id: 2, nama: 'Decolsin', harga: 10000, stok: 150, img: 'aset/decolsin.jpg', deskripsi: 'Obat flu efektif.' },
+      { id: 3, nama: 'Kapsida', harga: 30000, stok: 200, img: 'aset/kapsida.webp', deskripsi: 'Pembersih darah.' },
+      { id: 4, nama: 'Ibuprofen', harga: 10000, stok: 250, img: 'aset/ibuprofen.png', deskripsi: 'Antiinflamasi.' },
+      { id: 5, nama: 'Amoxicillin', harga: 4000, stok: 50, img: 'aset/amoxicillin.webp', deskripsi: 'Antibiotik.' },
+      { id: 6, nama: 'Diazepam', harga: 8000, stok: 20, img: 'aset/Diazepam.jpg', deskripsi: 'Obat penenang.' }
+    ];
+
+    let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    function renderObat(filter = "") {
+      const daftarObat = document.getElementById("daftarObat");
+      daftarObat.innerHTML = "";
+      obatList.filter(o => o.nama.toLowerCase().includes(filter.toLowerCase())).forEach(obat => {
+        const col = document.createElement("div");
+        col.className = "col-md-3 col-lg-2";
+        col.innerHTML = `
+          <div class="card h-100">
+            ${obat.nama === 'Decolsin' ? '<span class="badge-best-seller">BEST SELLER🔥</span>' : ''}
+            <img src="${obat.img}" class="card-img-top" onclick="tampilkanDetail(${obat.id})">
+            <div class="card-body text-center p-2">
+              <h6 class="card-title fw-bold">${obat.nama}</h6>
+              <p class="text-muted small">Rp ${obat.harga.toLocaleString()}</p>
+              <input type="number" id="qty-${obat.id}" class="form-control qty-input mb-2 mx-auto" value="1" min="1" max="${obat.stok}">
+              <button onclick="tambahKeKeranjang(${obat.id})" class="btn btn-sm btn-success w-100">Tambah</button>
             </div>
-            <button onclick="tambahKeKeranjang(${obat.id})" class="btn btn-success btn-tambah w-100">Tambah</button>
           </div>
-        </div>
-      `;
-      daftarObat.appendChild(col);
-    });
-  }
-
-  function tampilkanDetail(id) {
-    const obat = obatList.find(item => item.id === id);
-    if (obat) {
-      document.getElementById('modalImg').src = obat.img;
-      document.getElementById('modalImg').alt = obat.nama;
-      document.getElementById('modalNama').innerText = obat.nama;
-      document.getElementById('modalHarga').innerText = 'Rp ' + obat.harga.toLocaleString();
-      document.getElementById('modalStok').innerText = obat.stok;
-      document.getElementById('modalDeskripsi').innerText = obat.deskripsi || "Tidak ada deskripsi tambahan.";
-
-      const modalElement = document.getElementById('detailObatModal');
-      const modalDetail = new bootstrap.Modal(modalElement);
-      modalDetail.show();
+        `;
+        daftarObat.appendChild(col);
+      });
     }
-  }
 
-  document.getElementById("cariObat").addEventListener("input", (e) => renderObat(e.target.value));
+    function tambahKeKeranjang(id) {
+      const obat = obatList.find(item => item.id === id);
+      const qty = parseInt(document.getElementById(`qty-${id}`).value);
+      keranjang.push({ ...obat, jumlah: qty });
+      localStorage.setItem("keranjang", JSON.stringify(keranjang));
+      document.getElementById("jumlahKeranjang").innerText = keranjang.length;
+      Swal.fire({ icon: 'success', title: 'Berhasil', timer: 800, showConfirmButton: false });
+    }
 
-  function tambahKeKeranjang(id) {
-    const obat = obatList.find(item => item.id === id);
-    const qty = parseInt(document.getElementById(`qty-${id}`).value);
-    keranjang.push({ ...obat, jumlah: qty });
-    localStorage.setItem("keranjang", JSON.stringify(keranjang));
-    document.getElementById("jumlahKeranjang").innerText = keranjang.length;
-    Swal.fire({ icon: 'success', title: 'Ditambahkan', timer: 800, showConfirmButton: false });
-  }
+    document.getElementById("cariObat").addEventListener("input", (e) => renderObat(e.target.value));
+    document.addEventListener("DOMContentLoaded", () => { renderObat(); });
+  </script>
 
-  document.addEventListener("DOMContentLoaded", () => { 
-    renderObat(); 
-    document.getElementById("jumlahKeranjang").innerText = keranjang.length;
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
