@@ -12,7 +12,7 @@
   * { box-sizing: border-box; }
   body { 
     margin: 0; padding: 0; 
-   
+    background-color: #e0f7fa; 
     font-size: 12px !important; 
     min-height: 100vh; 
   }
@@ -34,23 +34,18 @@
   }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-  /* 3. LATAR BELAKANG SUB-MENU (BAGIAN YANG ANDA MAKSUD) */
-  
-  #subMenuData a {
-    padding: 8px 15px 8px 30px !important; /* Indentasi agar rapi */
-    font-size: 12px !important;
-  }
-  
-
-  /* 4. LAYOUT UTAMA */
+  /* 3. LAYOUT UTAMA (Wajib margin-left: 200px agar tidak tertutup sidebar) */
   .main-wrapper { margin-left: 200px; padding: 20px; }
   .container { max-width: 1140px; }
 
-  /* 5. JUDUL & TEKS (Paten 12px) */
+  /* 4. JUDUL & TEKS (Paten 12px) */
   h2, h3, h4, h6, p, span { font-size: 12px !important; }
 
-  /* 6. KOMPONEN KARTU */
+  /* 5. KOMPONEN KARTU (Untuk Index & User) */
+  /* Card Stat (Index) */
   .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+  
+  /* Card User (User.html) */
   .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
   .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
   .card-img-top { height: 180px; object-fit: cover; }
