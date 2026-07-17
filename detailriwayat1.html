@@ -8,43 +8,57 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-  /* 1. Pengaturan Dasar */
-  body { background-color: #e0f7fa; font-size: 12px !important; margin: 0; }
+  /* 1. Pengaturan Dasar & Layout Flexbox (Menjamin Sidebar & Konten sejajar) */
+  * { box-sizing: border-box; }
+  body { 
+    margin: 0; 
+    font-size: 12px !important; 
+    background-color: #e0f7fa; 
+    display: flex; /* Sidebar dan Konten akan selalu berdampingan */
+    min-height: 100vh;
+  }
 
-  /* 2. SIDEBAR - DIKUNCI LEBARNYA 200px */
+  /* 2. SIDEBAR - DIKUNCI 200px */
   .sidebar { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 200px !important; /* Memaksa agar tidak melebar */
-    min-width: 200px;        /* Memastikan lebar tidak kurang/lebih */
-    max-width: 200px;        /* Memastikan lebar tidak kurang/lebih */
-    height: 100vh; 
+    width: 200px; 
+    min-width: 200px; /* Memaksa agar tidak bisa mengecil/melebar */
+    max-width: 200px; 
     background-color: #cca8e9; 
     padding: 20px 10px; 
     z-index: 1000; 
-    overflow-x: hidden;      /* Mencegah konten dalam sidebar merusak lebar */
+    overflow-x: hidden;
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }
 
   .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 1.2rem; }
   .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-  /* 3. Layout Utama - HARUS margin-left 200px agar konten pas */
+  /* 3. Layout Utama - Menyesuaikan sisa ruang */
   .main-wrapper { 
-    margin-left: 200px; 
+    flex-grow: 1; 
     padding: 20px; 
+    width: calc(100% - 200px); 
   }
-  .container { max-width: 1140px; }
+  .container { max-width: 1140px; margin: auto; }
 
-  /* 4. Komponen (Avatar & Tabel tidak akan mengganggu sidebar) */
+  /* 4. Komponen (Avatar & Tabel) */
   .avatar-frame { 
-    width: 80px; height: 80px; 
+    width: 80px; 
+    height: 80px; 
     border: 3px solid #ffffff; 
     box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
     object-fit: cover; 
+    border-radius: 50%; /* Agar bulat */
   }
-  .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .table-container { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+  }
   th { width: 200px; color: #555; vertical-align: middle; }
 </style>
 </head>
