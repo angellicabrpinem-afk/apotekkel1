@@ -3,110 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda - GoApotek</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>User - GoApotek</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-    /* Dasar */
-    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
-    
-    /* Sidebar */
-    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    /* 1. Pengaturan Dasar (Paten 12px) */
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; padding: 0; 
+      background-color: #e0f7fa; 
+      font-size: 12px !important; 
+      min-height: 100vh; 
+    }
+
+    /* 2. SIDEBAR (HARGA MATI 200px) */
+    .sidebar { 
+      position: fixed; top: 0; left: 0; 
+      width: 200px; min-width: 200px; max-width: 200px; 
+      height: 100vh; 
+      background-color: #cca8e9; 
+      padding: 20px 10px; 
+      z-index: 1000; 
+    }
+    .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 12px !important; }
+    .sidebar a { 
+      display: block; padding: 10px 15px; 
+      text-decoration: none; color: #333; font-weight: 500; 
+      font-size: 12px !important; 
+    }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-    
-    /* Layout Utama */
+
+    /* 3. LATAR BELAKANG SUB-MENU */
+    #subMenuData {
+      background-color: rgba(255, 255, 255, 0.4) !important;
+      padding: 5px 0;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+    #subMenuData a {
+      padding: 8px 15px 8px 30px !important;
+      font-size: 12px !important;
+    }
+    #subMenuData a:hover {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    /* 4. LAYOUT UTAMA */
     .main-wrapper { margin-left: 200px; padding: 20px; }
     .container { max-width: 1140px; }
-    
-    /* Card Stat */
-    .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
-    .card-stat:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
+    /* 5. JUDUL & TEKS (Paten 12px) */
+    h2, h3, h4, h6, p, span, a { font-size: 12px !important; }
+
+    /* 6. KOMPONEN KARTU */
+    .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
+    .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card-img-top { height: 180px; object-fit: cover; }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
-    <a href="index.html" class="active">🏠 Beranda</a>
+    <div class="sidebar-logo">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-          <span>📁 Data</span>
-          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-        </a>
-        
-        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-          <a href="dataobat.html">💊 Data Obat</a>
-          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="rekammedis.html">📋 Rekam Medis</a>
-          <a href="Penjualan.html">🛒 Penjualan</a>
-          <a href="user.html">🧑‍🧒‍🧒 User</a>
-        </div>
-  
-        <a href="laporan.html">📈 Laporan</a>
-        <a href="logout.html">🚪 Logout</a>
-      </nav>
+      <span>📁 Data</span>
+      <i class="bi bi-chevron-down"></i>
+    </a>
+    
+    <div class="collapse show" id="subMenuData">
+      <a href="dataobat.html">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="rekammedis.html">📋 Rekam Medis</a>
+      <a href="Penjualan.html">🛒 Penjualan</a>
+      <a href="user.html" class="active">🧑‍🧒‍🧒 User</a>
+    </div>
 
-  <!-- Konten -->
+    <a href="laporan.html">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
+
+  <!-- KONTEN UTAMA -->
   <main class="main-wrapper">
     <div class="container">
-      <h2 class="fw-bold mb-4">Beranda</h2>
-
-      <div class="row g-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold m-0">User</h2>
+        <a href="tambahuser.html" class="btn btn-primary btn-sm">+ Tambah User</a>
+      </div>
+      
+      <div class="card-container">
         <!-- Card 1 -->
-        <div class="col-md-4">
-          <a href="dataobat.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Total Obat</h6><h3>775</h3><span>💊</span>
-            </div>
-          </a>
+        <div class="card">
+          <img src="aset/Alisa.jpg" class="card-img-top" alt="Alisa">
+          <div class="card-body">
+            <h6 class="card-title">Alisa</h6>
+            <p class="card-text"><strong>Admin</strong></p>
+            <a href="detailuser1.html" class="btn btn-sm btn-success">Detail</a>
+          </div>
         </div>
         <!-- Card 2 -->
-        <div class="col-md-4">
-          <a href="expired.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Obat Expired</h6><h3>70</h3><span>⚠️</span>
-            </div>
-          </a>
+        <div class="card">
+          <img src="aset/Anggota1.jpeg" class="card-img-top" alt="Anggota1">
+          <div class="card-body">
+            <h6 class="card-title">Angellica Br Pinem</h6>
+            <p class="card-text"><strong>Operator 1</strong></p>
+            <a href="detailuser2.html" class="btn btn-sm btn-success">Detail</a>
+          </div>
         </div>
         <!-- Card 3 -->
-        <div class="col-md-4">
-          <a href="harian.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Transaksi Hari Ini</h6><h3>70</h3><span>🛒</span>
-            </div>
-          </a>
-        </div>
-        <!-- Card 4 -->
-        <div class="col-md-4">
-          <a href="dokterpraktek.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Dokter Praktek</h6><h3>3</h3><span>👨‍⚕️</span>
-            </div>
-          </a>
-        </div>
-        <!-- Card 5 -->
-        <div class="col-md-4">
-          <a href="riwayatkunjungan.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Pasien</h6><h3>2</h3><span>👥</span>
-            </div>
-          </a>
-        </div>
-        <!-- Card 6 -->
-        <div class="col-md-4">
-          <a href="laporan.html" class="text-decoration-none text-dark">
-            <div class="card card-stat h-100">
-              <h6>Laporan Transaksi</h6><h3>Lihat Data</h3><span>📊</span>
-            </div>
-          </a>
+        <div class="card">
+          <img src="aset/Anggota2.jpeg" class="card-img-top" alt="Anggota2">
+          <div class="card-body">
+            <h6 class="card-title">Mutiara Saskia</h6>
+            <p class="card-text"><strong>Operator 2</strong></p>
+            <a href="detailuser3.html" class="btn btn-sm btn-success">Detail</a>
+          </div>
         </div>
       </div>
     </div>
   </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
