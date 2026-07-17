@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-  /* 1. Pengaturan Dasar (Paten 12px) */
+  /* 1. Pengaturan Dasar - 12px & background biru muda */
   * { box-sizing: border-box; }
   body { 
     margin: 0; padding: 0; 
@@ -17,7 +17,7 @@
     min-height: 100vh; 
   }
 
-  /* 2. SIDEBAR (HARGA MATI 200px) */
+  /* 2. SIDEBAR - Tetap 200px & warna ungu */
   .sidebar { 
     position: fixed; top: 0; left: 0; 
     width: 200px; min-width: 200px; max-width: 200px; 
@@ -34,21 +34,29 @@
   }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-  /* 3. LAYOUT UTAMA (Wajib margin-left: 200px agar tidak tertutup sidebar) */
-  .main-wrapper { margin-left: 200px; padding: 20px; }
-  .container { max-width: 1140px; }
+  /* 3. LAYOUT UTAMA */
+  .main-wrapper { 
+    margin-left: 200px; 
+    padding: 20px; 
+    /* INI YANG TADI HILANG: Tambahkan background agar konten ada "kotak" nya */
+    background-color: transparent; 
+  }
+  .container { 
+    max-width: 1140px; 
+    background-color: #ffffff; /* Warna putih untuk kotak konten */
+    padding: 20px; 
+    border-radius: 10px;      /* Membuat sudut kotak melengkung */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Efek bayangan biar nampak timbul */
+  }
 
   /* 4. JUDUL & TEKS (Paten 12px) */
-  h2, h3, h4, h6, p, span { font-size: 12px !important; }
+  h2, h3, h4, h6, p, span, a { font-size: 12px !important; }
 
-  /* 5. KOMPONEN KARTU (Untuk Index & User) */
-  /* Card Stat (Index) */
-  .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-  
-  /* Card User (User.html) */
+  /* 5. KOMPONEN KARTU */
   .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
   .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
   .card-img-top { height: 180px; object-fit: cover; }
+  .card-stat { padding: 20px; border-radius: 10px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 </style>
 </head>
 <body>
